@@ -1,6 +1,16 @@
 from os import walk, path
 
+# 使用举例
+# from bllools.files import get
+# dir = 'D:/workplace/CCPD/2B/ASC'
+# getFiles = get.GetFile(dir, suffix={'VO.java', 'vo.java', 'Vo.java'})
+# files = getFiles.all_files()
 
+'''
+此类针对文件的查找功能
+基础的功能是将路径下所有文件都查询出来
+再此基础上，如果传入前缀(prefix)或尾缀(suffix)，则会将符合文件名规则的文件过滤获取
+'''
 class GetFile():
 
     def __init__(self, dirc, suffix=[], prefix=[]):
@@ -12,9 +22,11 @@ class GetFile():
         # 判断是否需要以文件前缀进行过滤
         self.need_prefix = False if self.prefix is None or len(self.prefix) == 0 else True
 
-    def __str__(self):
-        print("获取路径 ", self.dirc, " 下所有文件")
-
+    '''
+    该方法为递归方法
+    在初始化时已经设置了根目录， 所以在使用该方法时不要传入路径(new_dir)这个参数
+    最后会将符合条件的文件以绝路路径列表的形式返回
+    '''
     def all_files(self, new_dir:str = ""):
         result_files = [];
 

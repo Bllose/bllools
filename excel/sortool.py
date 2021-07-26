@@ -14,6 +14,8 @@ def aligning(absoluteDir):
     colD = ws['D']
 
     # 将C列挪至D列
+    # 对于excel的行列而言，都是以 1 开始计数
+    # 对于python的数组而言，是以 0 开始计数的
     for cellC in colC:
         if cellC.row == 1:
             continue
